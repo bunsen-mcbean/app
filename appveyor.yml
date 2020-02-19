@@ -15,5 +15,5 @@ build_script:
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 artifacts:
-  - path: jamovi.zip
+  - path: '*.zip'
     name: app-bundle
