@@ -13,8 +13,10 @@ build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
   - mv dist/jamovi.app .
   - cp *.dylib jamovi.app/Contents/Frameworks
-  - cp Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
-  - cp -r Electron.app/Contents/Frameworks/*  jamovi.app/Contents/Frameworks
+  - cp Info.plist jamovi.app/Contents
+  - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
+  - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
+  - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 artifacts:
