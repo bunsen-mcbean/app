@@ -8,4 +8,4 @@ install:
 
 build_script:
   - python3 setup.py py2app
-  - ls
+  - ls dist
