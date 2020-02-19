@@ -3,7 +3,7 @@ image: macOS
 
 install:
   - python3 --version
-  - python38 --version
+  - whereis python3
 
 build_script:
   - ls
