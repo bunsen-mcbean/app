@@ -6,5 +6,5 @@ install:
   - sudo installer -pkg python.pkg -target /
 
 build_script:
-  - python --version
-  - python3 --version
+  - python3 setup.py py2app
+  - ls
