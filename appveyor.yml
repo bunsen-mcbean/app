@@ -1,0 +1,8 @@
+
+image: macOS
+
+install:
+  - python3.8 --version
+
+build_script:
+  - ls
