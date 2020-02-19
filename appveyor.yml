@@ -6,8 +6,6 @@ install:
   - sudo installer -pkg python.pkg -target /
   - python3 -m pip install -r requirements.txt
   - curl -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
-  - unzip electron.zip
-  - ls electron.app
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
