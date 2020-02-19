@@ -6,7 +6,7 @@ Usage:
 
 from setuptools import setup
 
-APP = [ 'empty.py' ]
+APP = [ 'jamovi.py' ]
 DATA_FILES = []
 OPTIONS = {}
 
