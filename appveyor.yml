@@ -10,6 +10,7 @@ install:
   - rm electron.zip
   - test -f R.framework.tar.bz2 && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/R.framework.tar.bz2 || true
   - test -f base.tar.bz2        && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/base.tar.bz2        || true
+  - ls
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
