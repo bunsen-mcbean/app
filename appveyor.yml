@@ -3,7 +3,7 @@ image: macOS
 
 install:
   - python3 --version
-  - whereis python3
+  - ls /usr/bin
 
 build_script:
   - ls
