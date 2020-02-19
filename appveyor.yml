@@ -2,9 +2,9 @@
 image: macOS
 
 install:
-  - python3 --version
-  - ls /usr/local/bin
-  - python3.8.0 --version
+  - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
+  - sudo installer -pkg python.pkg -target /
 
 build_script:
-  - ls
+  - python --version
+  - python3 --version
