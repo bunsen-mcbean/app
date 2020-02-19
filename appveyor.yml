@@ -8,6 +8,8 @@ install:
   - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
+  - test -f R.framework.tar.bz2 && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/R.framework.tar.bz2
+  - test -f base.tar.bz2        && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/base.tar.bz2
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
@@ -18,6 +20,10 @@ build_script:
   - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
   - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
+
+cache:
+  - R.framework.tar.bz2
+  - base.tar.bz2
 
 artifacts:
   - path: '*.zip'
