@@ -1,1 +1,9 @@
 py2app
+cython
+protobuf
+tornado
+nanomsg
+PyYAML
+chardet
+openpyxl
+pyexcel-ezodf
