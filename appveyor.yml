@@ -22,8 +22,8 @@ build_script:
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 cache:
-  - R.framework.tar.bz2
-  - base.tar.bz2
+  - R.framework.tar.bz2 -> appveyor.yml
+  - base.tar.bz2 -> appveyor.yml
 
 artifacts:
   - path: '*.zip'
