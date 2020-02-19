@@ -8,8 +8,8 @@ install:
   - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
-  - test -f R.framework.tar.bz2 && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/R.framework.tar.bz2
-  - test -f base.tar.bz2        && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/base.tar.bz2
+  - test -f R.framework.tar.bz2 && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/R.framework.tar.bz2 || true
+  - test -f base.tar.bz2        && curl -o https://jamovi-library.s3.amazonaws.com/travis-builds/base.tar.bz2        || true
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
