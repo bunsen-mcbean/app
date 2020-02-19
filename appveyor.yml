@@ -7,5 +7,10 @@ install:
   - python3 -m pip install -r requirements.txt
 
 build_script:
-  - python3 setup.py py2app
-  - ls dist
+  - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
+  - mv dist/jamovi.app .
+  - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
+
+artifacts:
+  - path: jamovi.zip
+    name: app-bundle
