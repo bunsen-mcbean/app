@@ -14,7 +14,7 @@
     "build:coms": "protoc --proto_path=jamovi/server/jamovi/server --python_out=jamovi/server/jamovi/server jamovi/server/jamovi/server/jamovi.proto",
     "build:engine": "make -C ../build --makefile=../Resources/jamovi/engine/Makefile && make DESTDIR=.. -C ../build --makefile=../Resources/jamovi/engine/Makefile install",
     "clean:engine": "make -C ../build --makefile=../Resources/jamovi/engine/Makefile clean",
-    "build:electron": "cd jamovi/electron && npm run deploy",
+    "build:electron": "cd jamovi/electron && asar pack app ../../default_app.asar",
     "test:client": "cd jamovi && jshint client",
     "test:server": "../bin/python3 -m unittest discover --start-directory=jamovi/server",
     "test:server:anal": "flake8 jamovi/server && npm run test:server",
