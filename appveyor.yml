@@ -32,9 +32,9 @@ build_script:
   - npm install -g asar
   - npm run build:electron
   - npm install jamovi/jamovi-compiler
-  - ../MacOS/jamovi --version
   - npm run build:analyses
-  - cd ../..
+  - cd ../../..
+  - pwd
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 artifacts:
