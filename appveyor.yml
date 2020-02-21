@@ -12,6 +12,7 @@ install:
   - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
+  - git clone --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
@@ -24,6 +25,8 @@ build_script:
   - mkdir -p jamovi.app/Contents/Resources/modules
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
+  - sudo npm install -g jamovi/jamovi-compiler
+  - jmc --version
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 artifacts:
