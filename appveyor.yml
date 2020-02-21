@@ -13,14 +13,14 @@ install:
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
   - mkdir -p pb
-  - curl -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
+  - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
   - tar xf pb.tar.gz -C pb
   - cd pb
   - ./configure
   - make
   - make install
   - cd ..
-  - curl -o protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protoc-3.11.4-osx-x86_64.zip
+  - curl -L -o protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protoc-3.11.4-osx-x86_64.zip
   - unzip protoc.zip -d /usr/local
 
 build_script:
