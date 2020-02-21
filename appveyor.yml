@@ -14,7 +14,7 @@ install:
   - tar xf base.tar.bz2
   - mkdir -p pb
   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
-  - tar xf pb.tar.gz -C pb
+  - tar xf pb.tar.gz --strip-components=1 -C pb
   - cd pb
   - ls
   - ./configure
