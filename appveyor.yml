@@ -30,9 +30,8 @@ build_script:
   - cp package.json jamovi.app/Contents/Resources
   - cd jamovi.app/Contents/Resources
   - npm install -g asar
-  - npm run build:electron
   - npm install jamovi/jamovi-compiler
-  - npm run build:analyses
+  - npm run build:all
   - cd ../../..
   - pwd
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
