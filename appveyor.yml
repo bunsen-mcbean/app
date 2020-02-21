@@ -22,6 +22,7 @@ build_script:
   - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
   - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/Resources/modules
+  - mv R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
