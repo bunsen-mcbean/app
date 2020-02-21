@@ -24,7 +24,7 @@ build_script:
   - mkdir -p jamovi.app/Contents/Resources/modules
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
-  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources
+  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp package.json jamovi.app/Contents/Resources
   - cd jamovi.app/Contents/Resources
   - npm install jamovi/jamovi-compiler
