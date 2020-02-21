@@ -2,10 +2,10 @@
   "name": "jamovi",
   "scripts": {
     "start": "../bin/jamovi --debug",
-    "server": "cd jamovi/server && ../../../bin/python3.5 -u -m jamovi.server",
+    "server": "cd jamovi/server && ../../../bin/python3 -u -m jamovi.server",
     "build:all": "npm run build:server && npm run build:engine -- clean all && npm run build:analyses && npm run build:coms && npm run build:electron && npm run build:client",
-    "build:server": "cd jamovi/server && python3.5 setup.py build_ext --inplace -vvv",
-    "build:readstat": "cd jamovi/readstat && python3.5 setup.py install --install-platlib=../server && rm -rf ../server/*.egg-info",
+    "build:server": "cd jamovi/server && python3 setup.py build_ext --inplace -vvv",
+    "build:readstat": "cd jamovi/readstat && python3 setup.py install --install-platlib=../server && rm -rf ../server/*.egg-info",
     "build:watch": "cd jamovi/client && npm run watch",
     "build:client": "cd jamovi/client && npm run prepublish",
     "build:analyses": "npm run build:analyses:jmvcore && npm run build:analyses:jmv",
@@ -16,9 +16,9 @@
     "clean:engine": "make -C ../build --makefile=../Resources/jamovi/engine/Makefile clean",
     "build:electron": "cd jamovi/electron && npm run deploy",
     "test:client": "cd jamovi && jshint client",
-    "test:server": "../bin/python3.5 -m unittest discover --start-directory=jamovi/server",
+    "test:server": "../bin/python3 -m unittest discover --start-directory=jamovi/server",
     "test:server:anal": "flake8 jamovi/server && npm run test:server",
     "beep": "node -e \"require('beepbeep')()\"",
-    "update": "cd jamovi && git pull && cd client && npm install && cd .. && cd electron && npm install && cd .. && cd ../../../jmvcore && git pull && cd ../jmv && git pull && cd ../jamovi-compiler && git pull && npm install",
+    "update": "cd jamovi && git pull && cd client && npm install && cd .. && cd electron && npm install && cd .. && cd ../../../jmvcore && git pull && cd ../jmv && git pull && cd ../jamovi-compiler && git pull && npm install"
   }
 }
