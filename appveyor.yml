@@ -28,6 +28,7 @@ build_script:
   - cp package.json jamovi.app/Contents/Resources
   - cd jamovi.app/Contents/Resources
   - npm install jamovi/jamovi-compiler
+  - npm run build:electron
   - npm run build:analyses
   - cd ../..
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
