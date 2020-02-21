@@ -27,8 +27,9 @@ build_script:
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp package.json jamovi.app/Contents/Resources
   - cd jamovi.app/Contents/Resources
-  - npm install jamovi/jamovi-compiler
+  - npm install -g asar
   - npm run build:electron
+  - npm install jamovi/jamovi-compiler
   - npm run build:analyses
   - cd ../..
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
