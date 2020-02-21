@@ -20,6 +20,8 @@ install:
   - make
   - make install
   - cd ..
+  - curl -o protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protoc-3.11.4-osx-x86_64.zip
+  - unzip protoc.zip -d /usr/local
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
