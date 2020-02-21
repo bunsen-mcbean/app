@@ -12,7 +12,7 @@ install:
   - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
-  - git clone --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
+  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
