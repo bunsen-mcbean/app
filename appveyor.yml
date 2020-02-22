@@ -53,7 +53,12 @@ build_script:
   - cd jamovi.app/Contents/Resources
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
+  - cd jamovi/engine
+  - ./configure
+  - cd ../..
+  
   - npm run build:all
+  
   - cd ../../..
   - pwd
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
