@@ -15,6 +15,13 @@ install:
   - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
+  - mkdir boost_temp
+  - cd boost_temp
+  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
+  - tar xf boost.tar.bz2 --strip-components=1
+  - ls
+  - cd ..
+  - mv boost_temp/boost .
   - mkdir -p pb
   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
   - tar xf pb.tar.gz --strip-components=1 -C pb
@@ -24,12 +31,6 @@ install:
   - make
   - make install
   - cd ..
-  - mkdir boost_temp
-  - cd boost_temp
-  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - tar xf boost.tar.bz2
-  - cd ..
-  - mv boost_temp/boost .
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
