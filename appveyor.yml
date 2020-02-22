@@ -1,6 +1,9 @@
 
 image: macOS
 
+environment:
+  APPVEYOR_CONSOLE_DISABLE_PTY: true
+
 install:
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
   - sudo installer -pkg python.pkg -target /
