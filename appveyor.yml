@@ -24,8 +24,12 @@ install:
   - make
   - make install
   - cd ..
+  - mkdir boost_temp
+  - cd boost_temp
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - tar xf boost.tar.bz2 boost/*
+  - tar xf boost.tar.bz2
+  - cd ..
+  - mv boost_temp/boost .
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
@@ -42,6 +46,8 @@ build_script:
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
+  - mkdir -p jamovi.app/Contents/Resources/include
+  - mv boost jamovi.app/Contents/Resources/include
   - cd jamovi.app/Contents/Resources
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
