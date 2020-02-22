@@ -47,6 +47,7 @@ build_script:
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
+  - mkdir -p jamovi.app/Contents/build
   - mkdir -p jamovi.app/Contents/Resources/include
   - mv boost jamovi.app/Contents/Resources/include
   - cd jamovi.app/Contents/Resources
