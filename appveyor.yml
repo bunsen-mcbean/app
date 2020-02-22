@@ -2,7 +2,7 @@
 image: macOS
 
 environment:
-  APPVEYOR_CONSOLE_DISABLE_PTY: true
+    APPVEYOR_CONSOLE_DISABLE_PTY: true
 
 install:
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
@@ -25,7 +25,7 @@ install:
   - make install
   - cd ..
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - tar xf boost.tar.bz2 boost
+  - tar xf boost.tar.bz2 boost/*
 
 build_script:
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
