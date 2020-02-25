@@ -15,13 +15,27 @@ install:
   - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
-  - mkdir boost_temp
-  - cd boost_temp
+  
+  # nanomsg
+  - mkdir nanomsg
+  - cd nanomsg
+  - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
+  - tar xf --strip-components=1
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build . --target install
+  
+  # boost
+  - mkdir boost_build
+  - cd boost_build
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
   - tar xf boost.tar.bz2 --strip-components=1
   - ls
   - cd ..
   - mv boost_temp/boost .
+  
+  # protocol buffers
   - mkdir -p pb
   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
   - tar xf pb.tar.gz --strip-components=1 -C pb
