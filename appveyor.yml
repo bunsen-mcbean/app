@@ -33,7 +33,7 @@ install:
   - mkdir -p boost
   - tar xf boost.tar.bz2 --strip-components=1 -C boost
   - cd boost
-  - ls
+  - ./bootstrap.sh --with-libraries=filesystem,system
   - ./b2 -j4 install
   - cd ..
   
