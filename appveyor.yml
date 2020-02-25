@@ -82,7 +82,6 @@ build_script:
   - ./configure
   - cd ../..
   
-  - npm run build:engine
   - npm run build:all
   
   - cd ../../..
