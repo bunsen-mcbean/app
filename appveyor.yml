@@ -48,7 +48,10 @@ install:
   - cd ..
 
 build_script:
+
+  # python deps
   - python3 setup.py py2app --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
+  
   - mv dist/jamovi.app .
   - cp *.dylib jamovi.app/Contents/Frameworks
   - cp Info.plist jamovi.app/Contents
@@ -59,23 +62,28 @@ build_script:
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
+  
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/build
   - mkdir -p jamovi.app/Contents/Resources/include
   - mv boost jamovi.app/Contents/Resources/include
+  
   - cd jamovi.app/Contents/Resources
+  
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
+  
   - cd jamovi/engine
   - ./configure
+  - cat ./configure
   - cd ../..
   
   - npm run build:all
   
   - cd ../../..
-  - pwd
+  
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
 
 artifacts:
