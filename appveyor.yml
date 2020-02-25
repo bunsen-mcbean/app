@@ -62,11 +62,6 @@ build_script:
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
-  - ls jamovi.app/Contents/Resources/modules
-  - ls jamovi.app/Contents/Resources/modules/base
-  - ls jamovi.app/Contents/Resources/modules/base/R
-  - ls jamovi.app/Contents/Resources/modules/base/R/RInside
-  - ls jamovi.app/Contents/Resources/modules/base/R/RInside/include
   
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
