@@ -17,30 +17,30 @@ install:
   - tar xf base.tar.bz2
   
   # nanomsg
-  - mkdir nanomsg
-  - cd nanomsg
   - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
-  - tar xf nanomsg.tar.gz --strip-components=1
+  - mkdir -p nanomsg
+  - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
+  - cd nanomsg
   - mkdir build
   - cd build
   - cmake ..
   - cmake --build . --target install
+  - cd ..
+  - cd ..
   
   # boost
-  - mkdir boost_build
-  - cd boost_build
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - tar xf boost.tar.bz2 --strip-components=1
-  - ls
+  - mkdir -p boost
+  - tar xf boost.tar.bz2 --strip-components=1 -C boost
+  - cd boost
+  - ./b2 -j4 install
   - cd ..
-  - mv boost_temp/boost .
   
   # protocol buffers
-  - mkdir -p pb
   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
+  - mkdir -p pb
   - tar xf pb.tar.gz --strip-components=1 -C pb
   - cd pb
-  - ls
   - ./configure
   - make
   - make install
