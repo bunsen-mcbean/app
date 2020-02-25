@@ -20,7 +20,7 @@ install:
   - mkdir nanomsg
   - cd nanomsg
   - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
-  - tar xf --strip-components=1
+  - tar xf nanomsg.tar.gz --strip-components=1
   - mkdir build
   - cd build
   - cmake ..
