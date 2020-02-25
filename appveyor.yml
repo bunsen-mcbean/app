@@ -28,24 +28,24 @@ install:
   - cd ..
   - cd ..
   
-  # boost
-  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - mkdir -p boost
-  - tar xf boost.tar.bz2 --strip-components=1 -C boost
-  - cd boost
-  - ./bootstrap.sh --with-libraries=filesystem,system
-  - ./b2 -j4 install
-  - cd ..
+#   # boost
+#   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
+#   - mkdir -p boost
+#   - tar xf boost.tar.bz2 --strip-components=1 -C boost
+#   - cd boost
+#   - ./bootstrap.sh --with-libraries=filesystem,system
+#   - ./b2 -j4 install
+#   - cd ..
   
-  # protocol buffers
-  - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
-  - mkdir -p pb
-  - tar xf pb.tar.gz --strip-components=1 -C pb
-  - cd pb
-  - ./configure
-  - make
-  - make install
-  - cd ..
+#   # protocol buffers
+#   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
+#   - mkdir -p pb
+#   - tar xf pb.tar.gz --strip-components=1 -C pb
+#   - cd pb
+#   - ./configure
+#   - make
+#   - make install
+#   - cd ..
 
 build_script:
 
@@ -62,6 +62,11 @@ build_script:
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
+  - ls jamovi.app/Contents/Resources/modules
+  - ls jamovi.app/Contents/Resources/modules/base
+  - ls jamovi.app/Contents/Resources/modules/base/R
+  - ls jamovi.app/Contents/Resources/modules/base/R/RInside
+  - ls jamovi.app/Contents/Resources/modules/base/R/RInside/include
   
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
