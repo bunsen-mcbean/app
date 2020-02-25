@@ -3,7 +3,7 @@
   "scripts": {
     "start": "../bin/jamovi --debug",
     "server": "cd jamovi/server && ../../../bin/python3 -u -m jamovi.server",
-    "build:all": "npm run build:server && npm run build:engine -- clean all && npm run build:analyses && npm run build:coms && npm run build:electron && npm run build:client",
+    "build:all": "npm run build:electron && npm run build:server && npm run build:engine -- clean all && npm run build:analyses && npm run build:coms && npm run build:client",
     "build:server": "cd jamovi/server && python3 setup.py build_ext --inplace -vvv",
     "build:readstat": "cd jamovi/readstat && python3 setup.py install --install-platlib=../server && rm -rf ../server/*.egg-info",
     "build:watch": "cd jamovi/client && npm run watch",
