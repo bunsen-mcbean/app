@@ -72,8 +72,10 @@ build_script:
   
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
-  - echo $NODE_ENV
-  - npm install jamovi/client
+  
+  - cd jamovi/client
+  - npm install
+  - cd ../..
   
   - cd jamovi/engine
   - ./configure
