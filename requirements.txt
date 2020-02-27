@@ -5,5 +5,7 @@ tornado
 nanomsg
 PyYAML
 chardet
+numpy
+scipy
 openpyxl
 pyexcel-ezodf
