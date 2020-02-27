@@ -50,7 +50,7 @@ install:
 build_script:
 
   # python deps
-  - python3 setup.py py2app --includes tornado,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,protobuf,PyYAML,chardet,ezodf,openpyxl,pyexcel-ezodf
+  - python3 setup.py py2app --includes tornado,tornado.ioloop,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,protobuf,PyYAML,chardet,ezodf,openpyxl,pyexcel-ezodf
   
   - mv dist/jamovi.app .
   - cp *.dylib jamovi.app/Contents/Frameworks
