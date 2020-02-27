@@ -50,7 +50,7 @@ install:
 build_script:
 
   # python deps
-  - python3 setup.py py2app --arch=x86_64 --frameworks libboost_filesystem-mt,libboost_system-mt,libnanomsg --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
+  - python3 setup.py py2app --arch=x86_64 --frameworks libnanomsg --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
   
   - mv dist/jamovi.app .
   - cp *.dylib jamovi.app/Contents/Frameworks
