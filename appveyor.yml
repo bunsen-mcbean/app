@@ -34,7 +34,7 @@ install:
   - tar xf boost.tar.bz2 --strip-components=1 -C boost
   - cd boost
   - ./bootstrap.sh --with-libraries=filesystem,system
-  - ./b2 -j4 install
+  - ./b2 -j4 threading=multi variant=release install
   - cd ..
   
   # protocol buffers
@@ -50,7 +50,7 @@ install:
 build_script:
 
   # python deps
-  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
+  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,google.protobuf.internal,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
   
   # - cp *.dylib jamovi.app/Contents/Frameworks
   - cp Info.plist jamovi.app/Contents
