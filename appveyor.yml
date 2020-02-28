@@ -5,17 +5,6 @@ environment:
     APPVEYOR_CONSOLE_DISABLE_PTY: true
 
 install:
-  - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
-  - sudo installer -pkg python.pkg -target /
-  - python3 -m pip install -r requirements.txt
-  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
-  - unzip electron.zip
-  - rm electron.zip
-  - curl -o R.framework.tar.bz2 https://www.jamovi.org/misc/R.framework.tar.bz2
-  - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
-  - tar xf R.framework.tar.bz2
-  - tar xf base.tar.bz2
-  
   # nanomsg
   - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
   - mkdir -p nanomsg
@@ -46,6 +35,22 @@ install:
   - make
   - make install
   - cd ..
+  
+  # python
+  - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
+  - sudo installer -pkg python.pkg -target /
+  - python3 -m pip install -r requirements.txt
+  
+  # electron
+  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
+  - unzip electron.zip
+  - rm electron.zip
+  
+  # R
+  - curl -o R.framework.tar.bz2 https://www.jamovi.org/misc/R.framework.tar.bz2
+  - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
+  - tar xf R.framework.tar.bz2
+  - tar xf base.tar.bz2
 
 build_script:
 
