@@ -54,8 +54,9 @@ build_script:
   - mv setup.py jamovi/server/setup-py2app.py
   - cd jamovi/server
   - python3 setup.py build_ext --inplace
-  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,chardet,ezodf,openpyxl --exclude jamovi
+  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,chardet,ezodf,openpyxl
   - cd ../..
+  - rm -rf jamovi.app/Contents/Resources/lib/python3.8/lib-dynload/jamovi
   
   - cp Info.plist jamovi.app/Contents
   - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
