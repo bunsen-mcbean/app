@@ -49,6 +49,11 @@ install:
 
 build_script:
 
+  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
+  - cd jamovi/server
+  - python3 setup.py install
+  - cd ../..
+
   # python deps
   - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,google.protobuf.internal,google.protobuf.enum_type_wrapper,google.protobuf.pyext,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
   
@@ -61,8 +66,8 @@ build_script:
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
+  - mv jamovi jamovi.app/Contents/Resources
   
-  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git jamovi.app/Contents/Resources/jamovi
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/build
