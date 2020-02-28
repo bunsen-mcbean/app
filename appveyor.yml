@@ -57,6 +57,10 @@ build_script:
   - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,chardet,ezodf,openpyxl
   - cd ../..
   - rm -rf jamovi.app/Contents/Resources/lib/python3.8/lib-dynload/jamovi
+  - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
+  
+  # remove these
+  - rm -rf /usr/local/lib/libboost*
   
   - cp Info.plist jamovi.app/Contents
   - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
