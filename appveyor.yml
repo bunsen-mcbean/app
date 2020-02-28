@@ -50,14 +50,13 @@ install:
 build_script:
 
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
+  - mv jamovi.py jamovi/server
+  - mv setup.py jamovi/server/setup-py2app.py
   - cd jamovi/server
-  - python3 setup.py install
+  - python3 setup.py build_ext --inplace
+  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,chardet,ezodf,openpyxl
   - cd ../..
-
-  # python deps
-  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,chardet,ezodf,openpyxl
   
-  # - cp *.dylib jamovi.app/Contents/Frameworks
   - cp Info.plist jamovi.app/Contents
   - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
   - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
