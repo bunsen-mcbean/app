@@ -94,6 +94,7 @@ build_script:
   - cd jamovi/engine
   - ./configure
   - cd ../..
+  - export BINDIR=MacOS
   
   - npm run build:all
   
