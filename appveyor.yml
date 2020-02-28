@@ -95,6 +95,7 @@ build_script:
   - export BINDIR=MacOS
   
   - npm run build:all
+  - npm run build:readstat
   
   - cd ../../..
 
