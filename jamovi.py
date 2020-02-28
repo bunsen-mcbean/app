@@ -1,2 +1,2 @@
 
-from jamovi.server import __main__
+from jamovi.server.server import Server
