@@ -55,7 +55,7 @@ build_script:
   - cd ../..
 
   # python deps
-  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl --excludes jamovi
+  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
   
   # - cp *.dylib jamovi.app/Contents/Frameworks
   - cp Info.plist jamovi.app/Contents
