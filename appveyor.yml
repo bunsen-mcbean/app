@@ -55,7 +55,7 @@ build_script:
   - cd ../..
 
   # python deps
-  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes tornado,tornado.ioloop,tornado.httpserver,tornado.web,nanomsg,_nanomsg_ctypes,_nanomsg_cpy,google.protobuf,google.protobuf.internal,google.protobuf.enum_type_wrapper,google.protobuf.pyext,yaml,chardet,numpy,scipy,ezodf,openpyxl,ezodf
+  - python3 setup.py py2app --arch=x86_64 --dist-dir . --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl --excludes jamovi
   
   # - cp *.dylib jamovi.app/Contents/Frameworks
   - cp Info.plist jamovi.app/Contents
@@ -71,7 +71,7 @@ build_script:
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/build
-  - ln -s jamovi.app/Contents/bin jamovi.app/Contents/MacOS
+  - ln -s jamovi.app/Contents/MacOS jamovi.app/Contents/bin
   
   - cd jamovi.app/Contents/Resources
   
