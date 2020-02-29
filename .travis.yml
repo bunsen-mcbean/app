@@ -20,7 +20,6 @@ install:
 
   - brew install marcelomazza/homebrew-curl-libssh2/curl  # curl which supports sftp
   - brew install nanomsg
-  - brew install boost
   - brew install protobuf
   
   # boost
