@@ -16,6 +16,7 @@ install:
 #   - cd ..
 
   - brew install nanomsg
+  - nvm ls-remote
   
   # boost
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
