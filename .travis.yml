@@ -18,7 +18,7 @@ install:
   - brew install marcelomazza/homebrew-curl-libssh2/curl
   - /usr/local/opt/curl/bin/curl -V
   - /usr/local/opt/curl/bin/curl --insecure --list-only
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/
+         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/
 
   - brew install nanomsg
   - nvm install v12.16.1
