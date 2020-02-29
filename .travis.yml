@@ -4,16 +4,18 @@ osx_image: xcode7.3
 
 install:
   # nanomsg
-  - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
-  - mkdir -p nanomsg
-  - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
-  - cd nanomsg
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cmake --build . --target install
-  - cd ..
-  - cd ..
+#   - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
+#   - mkdir -p nanomsg
+#   - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
+#   - cd nanomsg
+#   - mkdir build
+#   - cd build
+#   - cmake ..
+#   - cmake --build . --target install
+#   - cd ..
+#   - cd ..
+
+  - brew install nanomsg
   
   # boost
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
