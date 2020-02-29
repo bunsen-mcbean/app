@@ -17,7 +17,7 @@ install:
 
   - brew install marcelomazza/homebrew-curl-libssh2/curl
   - /usr/local/opt/curl/bin/curl -V
-  - /usr/local/opt/curl/bin/curl --list-only
+  - /usr/local/opt/curl/bin/curl --insecure --list-only
          sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/downloads.jamovi.org/
 
   - brew install nanomsg
@@ -112,7 +112,9 @@ script:
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
   
 after_success:
-  - curl --ftp-create-dirs
+  - /usr/local/opt/curl/bin/curl
+         --ftp-create-dirs
+         --insecure
          -T jamovi.zip
          sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/downloads.jamovi.org/travis-builds/
          
