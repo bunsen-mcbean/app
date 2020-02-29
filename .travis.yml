@@ -18,7 +18,7 @@ install:
   - brew install marcelomazza/homebrew-curl-libssh2/curl
   - /usr/local/opt/curl/bin/curl -V
   - /usr/local/opt/curl/bin/curl --insecure --list-only
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/
+         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/jamovidownloads/downloads.jamovi.org
 
   - brew install nanomsg
   - nvm install v12.16.1
@@ -116,6 +116,6 @@ after_success:
          --ftp-create-dirs
          --insecure
          -T jamovi.zip
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/downloads.jamovi.org/travis-builds/
+         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/jamovidownloads/downloads.jamovi.org/travis-builds/
          
   
