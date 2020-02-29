@@ -23,13 +23,13 @@ install:
   - brew install protobuf
   
   # boost
-#   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-#   - mkdir -p boost
-#   - tar xf boost.tar.bz2 --strip-components=1 -C boost
-#   - cd boost
-#   - ./bootstrap.sh --with-libraries=filesystem,system
-#   - sudo ./b2 -j4 threading=multi variant=release install
-#   - cd ..
+  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.72.0/boost_1_72_0.tar.bz2
+  - mkdir -p boost
+  - tar xf boost.tar.bz2 --strip-components=1 -C boost
+  - cd boost
+  - ./bootstrap.sh --with-libraries=filesystem,system
+  - sudo ./b2 -j4 threading=multi variant=release install
+  - cd ..
   
   # protocol buffers
 #   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
