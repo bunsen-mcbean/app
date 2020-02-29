@@ -106,3 +106,9 @@ script:
   
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
   
+after_success:
+  - curl --ftp-create-dirs
+         -T jamovi.zip
+         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/downloads.jamovi.org/travis-builds/
+         
+  
