@@ -2,10 +2,6 @@
 os: osx
 osx_image: xcode7.3
 
-language: node_js
-node_js:
-  - "8"
-
 install:
   # nanomsg
 #   - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
@@ -20,6 +16,8 @@ install:
 #   - cd ..
 
   - brew install nanomsg
+  - nvm install --lts
+  - nvm use --lts
   
   # boost
   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
