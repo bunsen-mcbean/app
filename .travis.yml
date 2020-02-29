@@ -1,0 +1,104 @@
+
+os: osx
+osx_image: xcode7.3
+
+install:
+  # nanomsg
+  - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
+  - mkdir -p nanomsg
+  - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
+  - cd nanomsg
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build . --target install
+  - cd ..
+  - cd ..
+  
+  # boost
+  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
+  - mkdir -p boost
+  - tar xf boost.tar.bz2 --strip-components=1 -C boost
+  - cd boost
+  - ./bootstrap.sh --with-libraries=filesystem,system
+  - ./b2 -j4 threading=multi variant=release install
+  - cd ..
+  
+  # protocol buffers
+  - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
+  - mkdir -p pb
+  - tar xf pb.tar.gz --strip-components=1 -C pb
+  - cd pb
+  - ./configure
+  - make
+  - make install
+  - cd ..
+  
+  # python
+  - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
+  - sudo installer -pkg python.pkg -target /
+  - python3 -m pip install -r requirements.txt
+  
+  # electron
+  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
+  - unzip electron.zip
+  - rm electron.zip
+  
+  # R
+  - curl -o R.framework.tar.bz2 https://www.jamovi.org/misc/R.framework.tar.bz2
+  - curl -o base.tar.bz2        https://www.jamovi.org/misc/base.tar.bz2
+  - tar xf R.framework.tar.bz2
+  - tar xf base.tar.bz2
+
+script:
+
+  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
+  - mv jamovi.py jamovi/server
+  - mv setup.py jamovi/server/setup-py2app.py
+  - cd jamovi/server
+  - python3 setup.py build_ext --inplace
+  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib,libprotobuf.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
+  - cd ../..
+  - rm -rf jamovi.app/Contents/Resources/lib/python3.8/lib-dynload/jamovi
+  - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
+  
+  - cp Info.plist jamovi.app/Contents
+  - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
+  - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
+  - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
+  - mkdir -p jamovi.app/Contents/Resources/modules
+  - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
+  - mv R.framework jamovi.app/Contents/Frameworks
+  - mv base  jamovi.app/Contents/Resources/modules
+  - mv jamovi jamovi.app/Contents/Resources
+  
+  - cp env.conf     jamovi.app/Contents/Resources
+  - cp package.json jamovi.app/Contents/Resources
+  - mkdir -p jamovi.app/Contents/build
+  
+  - cd jamovi.app/Contents
+  - ln -s MacOS bin
+  - cd Resources
+  
+  - npm install -g asar
+  - npm install jamovi/jamovi-compiler
+  
+  - cd jamovi/client
+  - npm install
+  - cd ../..
+  
+  - cd jamovi/engine
+  - ./configure
+  - cd ../..
+  - export BINDIR=MacOS
+  
+  - npm run build:all
+  - npm run build:readstat
+  
+  - cd ../../..
+
+  - install_name_tool -change libboost_filesystem.dylib @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
+  - install_name_tool -change libboost_system.dylib     @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
+  
+  - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
+  
