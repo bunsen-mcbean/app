@@ -15,33 +15,32 @@ install:
 #   - cd ..
 #   - cd ..
 
-  - brew install marcelomazza/homebrew-curl-libssh2/curl
-  - /usr/local/opt/curl/bin/curl -V
-  - /usr/local/opt/curl/bin/curl --insecure --list-only
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/
-
-  - brew install nanomsg
   - nvm install v12.16.1
   - nvm use v12.16.1
+
+  - brew install marcelomazza/homebrew-curl-libssh2/curl  # curl which supports sftp
+  - brew install nanomsg
+  - brew install boost
+  - brew install protobuf
   
   # boost
-  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
-  - mkdir -p boost
-  - tar xf boost.tar.bz2 --strip-components=1 -C boost
-  - cd boost
-  - ./bootstrap.sh --with-libraries=filesystem,system
-  - sudo ./b2 -j4 threading=multi variant=release install
-  - cd ..
+#   - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.bz2
+#   - mkdir -p boost
+#   - tar xf boost.tar.bz2 --strip-components=1 -C boost
+#   - cd boost
+#   - ./bootstrap.sh --with-libraries=filesystem,system
+#   - sudo ./b2 -j4 threading=multi variant=release install
+#   - cd ..
   
   # protocol buffers
-  - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
-  - mkdir -p pb
-  - tar xf pb.tar.gz --strip-components=1 -C pb
-  - cd pb
-  - ./configure
-  - make
-  - sudo make install
-  - cd ..
+#   - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
+#   - mkdir -p pb
+#   - tar xf pb.tar.gz --strip-components=1 -C pb
+#   - cd pb
+#   - ./configure
+#   - make
+#   - sudo make install
+#   - cd ..
   
   # python
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
@@ -49,7 +48,7 @@ install:
   - python3 -m pip install -r requirements.txt
   
   # electron
-  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.7/electron-v6.1.7-darwin-x64.zip
+  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.9/electron-v6.1.9-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
   
