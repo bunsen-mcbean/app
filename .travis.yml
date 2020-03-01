@@ -112,14 +112,21 @@ script:
   - install_name_tool -change @rpath/libboost_system.dylib     @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-dev.zip
+  - ls
   - bash strip.sh
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
+  - ls
   
 after_success:
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
          --insecure
-         -T jamovi{,-dev}.zip
+         -T jamovi.zip
          sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
-         
+
+  - /usr/local/opt/curl/bin/curl
+         --ftp-create-dirs
+         --insecure
+         -T jamovi-dev.zip
+         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
   
