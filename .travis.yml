@@ -71,7 +71,8 @@ script:
   - rm -rf jamovi.app/Contents/Resources/jamovi.py
   - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
   
-  - cp Info.plist jamovi.app/Contents
+  - sed -E -e "s|\\$\\{ version \\}|`cat jamovi/version`|g" Info.plist.in > jamovi.app/Contents/Info.plist
+  - cat jamovi.app/Contents/Info.plist
   - cp icon.icns  jamovi.app/Contents/Resources
   - mv Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
   - mv Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
