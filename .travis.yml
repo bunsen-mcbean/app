@@ -70,6 +70,7 @@ script:
   - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
   
   - cp Info.plist jamovi.app/Contents
+  - cp icon.icns  jamovi.app/Contents/Resources
   - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
   - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
   - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
@@ -104,16 +105,20 @@ script:
   
   - cd ../../..
 
+  - install_name_tool -change libboost_filesystem.dylib        @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
+  - install_name_tool -change libboost_system.dylib            @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_filesystem.dylib @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_system.dylib     @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   
+  - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-dev.zip
+  - bash strip.sh
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
   
 after_success:
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
          --insecure
-         -T jamovi.zip
+         -T jamovi{,-dev}.zip
          sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
          
   
