@@ -77,7 +77,11 @@ script:
   - mv Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
   - mv Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/Resources/modules
+  
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
+  - install_name_tool -change @executable_path/../../lib/libR.dylib      @executable_path/../Frameworks/R.framework/Versions/3.6/Resources/lib/libR.dylib        jamovi.app/Contents/MacOS/R
+  - install_name_tool -change @executable_path/../../lib/libRblas.dylib  @executable_path/../Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.dylib    jamovi.app/Contents/MacOS/R
+  
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
   - mv jamovi jamovi.app/Contents/Resources
@@ -113,13 +117,13 @@ script:
   
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-dev.zip
   - bash strip.sh
-  - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi.zip
+  - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-unsigned.zip
   
 after_success:
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
          --insecure
-         -T jamovi.zip
+         -T jamovi-unsigned.zip
          sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
 
   - /usr/local/opt/curl/bin/curl
