@@ -67,6 +67,7 @@ script:
   - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib,libprotobuf.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl
   - cd ../..
   - rm -rf jamovi.app/Contents/Resources/lib/python3.8/lib-dynload/jamovi
+  - rm -rf jamovi.app/Contents/Resources/jamovi.py
   - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
   
   - cp Info.plist jamovi.app/Contents
