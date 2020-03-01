@@ -33,6 +33,15 @@ install:
   # - sudo make install
   # - cd ..
   
+  # boost
+  - curl -L -o boost.tar.bz2 https://sourceforge.net/projects/boost/files/boost/1.66.0/boost_1_66_0.tar.gz/download
+  - mkdir -p boost
+  - tar xf boost.tar.bz2 --strip-components=1 -C boost
+  - cd boost
+  - ./bootstrap.sh --with-libraries=filesystem,system
+  - sudo ./b2 -j4 threading=multi variant=release install
+  - cd ..
+  
   # python
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
   - curl -L -f -o lxml-4.5.0.tar.gz https://files.pythonhosted.org/packages/39/2b/0a66d5436f237aff76b91e68b4d8c041d145ad0a2cdeefe2c42f76ba2857/lxml-4.5.0.tar.gz
@@ -51,15 +60,6 @@ install:
   - curl -o base.tar.bz2        https://downloads.jamovi.org/travis-builds/base.tar.bz2
   - tar xf R.framework.tar.bz2
   - tar xf base.tar.bz2
-  
-  # boost
-  - curl -L -o boost.tar.bz2 https://netix.dl.sourceforge.net/project/boost/boost/1.72.0/boost_1_72_0.tar.bz2
-  - mkdir -p boost
-  - tar xf boost.tar.bz2 --strip-components=1 -C boost
-  - cd boost
-  - ./bootstrap.sh --with-libraries=filesystem,system
-  - sudo ./b2 -j4 threading=multi variant=release install
-  - cd ..
 
 script:
 
