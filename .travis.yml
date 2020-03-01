@@ -3,17 +3,8 @@ os: osx
 osx_image: xcode7.3
 
 install:
-  # # nanomsg
-  # - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
-  # - mkdir -p nanomsg
-  # - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
-  # - cd nanomsg
-  # - mkdir build
-  # - cd build
-  # - cmake ..
-  # - cmake --build . --target install
-  # - cd ..
-  # - cd ..
+
+  - ./add-osx-cert.sh
 
   - nvm install v12.16.1
   - nvm use v12.16.1
@@ -31,6 +22,18 @@ install:
   - sudo ./b2 -j4 threading=multi variant=release install
   - cd ..
   
+  # # nanomsg
+  # - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
+  # - mkdir -p nanomsg
+  # - tar xf nanomsg.tar.gz --strip-components=1 -C nanomsg
+  # - cd nanomsg
+  # - mkdir build
+  # - cd build
+  # - cmake ..
+  # - cmake --build . --target install
+  # - cd ..
+  # - cd ..
+  
   # # protocol buffers
   # - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
   # - mkdir -p pb
@@ -45,7 +48,6 @@ install:
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
   - sudo installer -pkg python.pkg -target /
   - python3 -m pip install -r requirements.txt
-  - pip3 freeze
   
   # electron
   - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.9/electron-v6.1.9-darwin-x64.zip
