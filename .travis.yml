@@ -72,9 +72,9 @@ script:
   
   - cp Info.plist jamovi.app/Contents
   - cp icon.icns  jamovi.app/Contents/Resources
-  - cp    Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
-  - cp -r Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
-  - cp    Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
+  - mv Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
+  - mv Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
+  - mv Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/Resources/modules
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - mv R.framework jamovi.app/Contents/Frameworks
