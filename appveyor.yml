@@ -78,9 +78,7 @@ build_script:
   - cp package.json jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/build
   
-  - cd jamovi.app/Contents
-  - ln -s MacOS bin
-  - cd Resources
+  - cd jamovi.app/Contents/Resources
   
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
