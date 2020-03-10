@@ -65,7 +65,7 @@ script:
 
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
   - cd jamovi
-  - git reset --hard b3b5dc25c0d5300c901a415bb6fea326adfe163b
+  - git reset --hard 92f44803a756ebef98480a32dff3e64b0ffbcf11
   - cd ..
   
   - mv jamovi.py jamovi/server
