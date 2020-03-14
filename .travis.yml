@@ -133,12 +133,14 @@ after_success:
   
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
+         --insecure
          --key /tmp/sftp_rsa
          -T jamovi-unsigned.zip
          sftp://${SFTP_USER}@jamovi.org/home/${SFTP_USER}/jamovi.org/downloads/
 
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
+         --insecure
          --key /tmp/sftp_rsa
          -T jamovi-dev.zip
          sftp://${SFTP_USER}@jamovi.org/home/${SFTP_USER}/jamovi.org/downloads/
