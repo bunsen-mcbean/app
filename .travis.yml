@@ -129,15 +129,17 @@ script:
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-unsigned.zip
   
 after_success:
+  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+  
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
-         --insecure
+         --key /tmp/sftp_rsa
          -T jamovi-unsigned.zip
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
+         sftp://${SFTP_USER}@jamovi.org/home/${SFTP_USER}/jamovi.org/downloads/
 
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
-         --insecure
+         --key /tmp/sftp_rsa
          -T jamovi-dev.zip
-         sftp://${SFTP_USER}:${SFTP_PASSWORD}@downloads.jamovi.org/home/${SFTP_USER}/downloads.jamovi.org/travis-builds/
+         sftp://${SFTP_USER}@jamovi.org/home/${SFTP_USER}/jamovi.org/downloads/
   
