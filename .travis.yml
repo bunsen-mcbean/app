@@ -2,6 +2,9 @@
 os: osx
 osx_image: xcode7.3
 
+env:
+    COMMIT_ID: de6b8f153e1c28c9986c7ec562f75eebeb5a0050
+
 install:
 
   - nvm install v12.16.1
@@ -65,7 +68,7 @@ script:
 
   - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
   - cd jamovi
-  - git reset --hard 42e59cabde0e288ae38f5f4b36b710f4be0774e2
+  - git reset --hard $COMMIT_ID
   - cd ..
   
   - mv jamovi.py jamovi/server
