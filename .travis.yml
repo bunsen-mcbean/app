@@ -54,7 +54,7 @@ install:
   - python3 -m pip install -r requirements.txt
   
   # electron
-  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.9/electron-v6.1.9-darwin-x64.zip
+  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v8.2.1/electron-v8.2.1-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
   
@@ -75,7 +75,7 @@ script:
   - mv setup.py jamovi/server/setup-py2app.py
   - cd jamovi/server
   - python3 setup.py build_ext --inplace
-  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib,libprotobuf.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl > /dev/null
+  - python3 setup-py2app.py py2app --arch=x86_64 --dist-dir ../.. --bdist-base ../../build --frameworks libnanomsg.dylib,libboost_system.dylib,libboost_filesystem.dylib,libprotobuf.dylib --includes _nanomsg_ctypes,_nanomsg_cpy,chardet,ezodf,openpyxl,aiohttp > /dev/null
   - cd ../..
   - rm -rf jamovi.app/Contents/Resources/lib/python3.8/lib-dynload/jamovi
   - rm -rf jamovi.app/Contents/Resources/jamovi.py
