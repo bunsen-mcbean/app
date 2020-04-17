@@ -46,7 +46,7 @@ install:
   - cd ..
   
   # python
-  - curl -o python.pkg https://www.python.org/ftp/python/3.8.1/python-3.8.1-macosx10.9.pkg
+  - curl -o python.pkg https://www.python.org/ftp/python/3.8.2/python-3.8.2-macosx10.9.pkg
   - curl -L -f -o lxml-4.5.0.tar.gz https://files.pythonhosted.org/packages/39/2b/0a66d5436f237aff76b91e68b4d8c041d145ad0a2cdeefe2c42f76ba2857/lxml-4.5.0.tar.gz
   
   - sudo installer -pkg python.pkg -target /
@@ -54,7 +54,7 @@ install:
   - python3 -m pip install -r requirements.txt
   
   # electron
-  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v8.2.1/electron-v8.2.1-darwin-x64.zip
+  - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v8.2.3/electron-v8.2.3-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
   
@@ -126,6 +126,13 @@ script:
   - install_name_tool -change libboost_system.dylib            @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_filesystem.dylib @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_system.dylib     @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
+  
+  - rm -rf jamovi.app/Contents/build/*
+  - rm -rf jamovi.app/Contents/server
+  - rm -rf jamovi.app/Contents/Resources/jamovi/server/jamovi.py
+  - rm -rf jamovi.app/Contents/Resources/jamovi/server/setup-py2app.py
+  - rm -rf jamovi.app/Contents/Resources/jamovi/server/build
+  - rm -rf jamovi.app/Contents/Resources/jamovi/readstat/build
   
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-dev.zip
   - bash strip.sh
