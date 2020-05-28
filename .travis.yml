@@ -3,7 +3,7 @@ os: osx
 osx_image: xcode7.3
 
 env:
-    COMMIT_ID: fbddbab75c002ee9aaede744fe1968ba8482f2a6
+    COMMIT_ID: ca2d6be060b9fe57100cfddec4f77aef10ee6623
 
 install:
 
