@@ -66,9 +66,10 @@ install:
 
 script:
 
-  - git clone --single-branch --branch current-dev --recurse-submodules -j8 https://github.com/jamovi/jamovi.git
+  - git clone --single-branch --branch current-dev https://github.com/jamovi/jamovi.git
   - cd jamovi
   - git reset --hard $COMMIT_ID
+  - git submodule update --init --recursive
   - cd ..
   
   - mv jamovi.py jamovi/server
