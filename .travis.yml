@@ -3,7 +3,7 @@ os: osx
 osx_image: xcode7.3
 
 env:
-    COMMIT_ID: bd307265d68631f98c687da224836e1f14c46d7f
+    COMMIT_ID: a3fe63705eec3ad4c39ccb36aaf58379295b5c24
 
 install:
 
@@ -13,7 +13,7 @@ install:
   - brew install marcelomazza/homebrew-curl-libssh2/curl  # curl which supports sftp
   - brew install nanomsg
   - brew install protobuf
-  
+
   # # nanomsg
   # - curl -L -o nanomsg.tar.gz https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
   # - mkdir -p nanomsg
@@ -25,7 +25,7 @@ install:
   # - cmake --build . --target install
   # - cd ..
   # - cd ..
-  
+
   # # protocol buffers
   # - curl -L -o pb.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.11.4/protobuf-cpp-3.11.4.tar.gz
   # - mkdir -p pb
@@ -35,7 +35,7 @@ install:
   # - make
   # - sudo make install
   # - cd ..
-  
+
   # boost
   - curl -L -o boost.tar.bz2 https://sourceforge.net/projects/boost/files/boost/1.66.0/boost_1_66_0.tar.gz/download
   - mkdir -p boost
@@ -44,20 +44,20 @@ install:
   - ./bootstrap.sh --with-libraries=filesystem,system
   - sudo ./b2 -j4 threading=multi variant=release install
   - cd ..
-  
+
   # python
   - curl -o python.pkg https://www.python.org/ftp/python/3.8.2/python-3.8.2-macosx10.9.pkg
   - curl -L -f -o lxml-4.5.0.tar.gz https://files.pythonhosted.org/packages/39/2b/0a66d5436f237aff76b91e68b4d8c041d145ad0a2cdeefe2c42f76ba2857/lxml-4.5.0.tar.gz
-  
+
   - sudo installer -pkg python.pkg -target /
   - python3 -m pip install --no-index --find-links="file://`pwd`" lxml
   - python3 -m pip install -r requirements.txt
-  
+
   # electron
   - curl -L -o electron.zip https://github.com/electron/electron/releases/download/v6.1.10/electron-v6.1.10-darwin-x64.zip
   - unzip electron.zip
   - rm electron.zip
-  
+
   # R
   - curl -o R.framework.tar.bz2 https://www.jamovi.org/downloads/R.framework.tar.bz2
   - curl -o base.tar.bz2        https://www.jamovi.org/downloads/base.tar.bz2
@@ -71,7 +71,7 @@ script:
   - git reset --hard $COMMIT_ID
   - git submodule update --init --recursive
   - cd ..
-  
+
   - mv jamovi.py jamovi/server
   - mv setup.py jamovi/server/setup-py2app.py
   - cd jamovi/server
@@ -83,67 +83,67 @@ script:
   - rm -rf jamovi.app/Contents/Resources/jamovi/server/jamovi.py
   - rm -rf jamovi.app/Contents/Resources/jamovi/server/setup-py2app.py
   - rm -rf jamovi.app/Contents/Resources/PythonApplet.icns
-  
+
   - zip -d jamovi.app/Contents/Resources/lib/python38.zip "jamovi/*"
-  
+
   - sed -E -e "s|\\$\\{ version \\}|`cat jamovi/version`|g" Info.plist.in > jamovi.app/Contents/Info.plist
   - cp icon.icns  jamovi.app/Contents/Resources
   - mv Electron.app/Contents/MacOS/Electron   jamovi.app/Contents/MacOS/jamovi
   - mv Electron.app/Contents/Frameworks/*     jamovi.app/Contents/Frameworks
   - mv Electron.app/Contents/Resources/electron.asar   jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/Resources/modules
-  
+
   - cp R.framework/Versions/3.6/Resources/bin/exec/R  jamovi.app/Contents/MacOS
   - install_name_tool -change @executable_path/../../lib/libR.dylib      @executable_path/../Frameworks/R.framework/Versions/3.6/Resources/lib/libR.dylib        jamovi.app/Contents/MacOS/R
   - install_name_tool -change @executable_path/../../lib/libRblas.dylib  @executable_path/../Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.dylib    jamovi.app/Contents/MacOS/R
-  
+
   - mv R.framework jamovi.app/Contents/Frameworks
   - mv base  jamovi.app/Contents/Resources/modules
   - mv jamovi jamovi.app/Contents/Resources
-  
+
   - cp env.conf     jamovi.app/Contents/Resources
   - cp package.json jamovi.app/Contents/Resources
   - mkdir -p jamovi.app/Contents/build
-  
+
   - cd jamovi.app/Contents
   - cd Resources
-  
+
   - npm install -g asar
   - npm install jamovi/jamovi-compiler
-  
+
   - cd jamovi/client
   - npm install
   - cd ../..
-  
+
   - cd jamovi/engine
   - ./configure
   - cd ../..
   - export BINDIR=MacOS
-  
+
   - npm run build:all
   - npm run build:readstat
-  
+
   - cd ../../..
 
   - install_name_tool -change libboost_filesystem.dylib        @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change libboost_system.dylib            @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_filesystem.dylib @executable_path/../Frameworks/libboost_filesystem.dylib jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
   - install_name_tool -change @rpath/libboost_system.dylib     @executable_path/../Frameworks/libboost_system.dylib     jamovi.app/Contents/Resources/jamovi/server/jamovi/core.*.so
-  
+
   - rm -rf jamovi.app/Contents/build/*
   - rm -rf jamovi.app/Contents/server
   - rm -rf jamovi.app/Contents/Resources/jamovi/server/jamovi.py
   - rm -rf jamovi.app/Contents/Resources/jamovi/server/setup-py2app.py
   - rm -rf jamovi.app/Contents/Resources/jamovi/server/build
   - rm -rf jamovi.app/Contents/Resources/jamovi/readstat/build
-  
+
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-dev.zip
   - bash strip.sh
   - ditto -c -k --sequesterRsrc --keepParent jamovi.app jamovi-unsigned.zip
-  
+
 after_success:
   - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-  
+
   - /usr/local/opt/curl/bin/curl
          --ftp-create-dirs
          --insecure
@@ -157,4 +157,3 @@ after_success:
          --key /tmp/sftp_rsa
          -T jamovi-dev.zip
          sftp://${SFTP_USER}@jamovi.org/home/${SFTP_USER}/jamovi.org/downloads/
-  
