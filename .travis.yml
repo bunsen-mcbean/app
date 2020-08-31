@@ -3,7 +3,7 @@ os: osx
 osx_image: xcode10.1
 
 env:
-    COMMIT_ID: 2f9ad96cd4d20bcd87eb6ce53dc034ef7ea6229e
+    COMMIT_ID: 968046fd4c2eca447eab5fab5287761876dc8dd8
 
 install:
 
