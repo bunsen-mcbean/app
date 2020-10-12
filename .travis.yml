@@ -109,10 +109,10 @@ script:
   - cd Resources
 
   - npm install -g asar
-  - npm install jamovi/jamovi-compiler
+  - npm ci jamovi/jamovi-compiler
 
   - cd jamovi/client
-  - npm install
+  - npm ci
   - cd ../..
 
   - cd jamovi/engine
