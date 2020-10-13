@@ -10,7 +10,7 @@ modulegraph==0.18
 nanomsg==1.0
 numpy==1.18.1
 openpyxl==3.0.3
-protobuf==3.11.3
+protobuf==3.13.0
 pyexcel-ezodf==0.3.4
 PyYAML==5.3
 scipy==1.4.1
