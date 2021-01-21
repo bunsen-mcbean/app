@@ -36,59 +36,19 @@
     <key>LSMinimumSystemVersion</key>
     <string>10.13.0</string>
 
-    <key>CFBundleDocumentTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeExtensions</key>
-            <array>
-                <string>omv</string>
-            </array>
-
-            <key>CFBundleTypeIconFile</key>
-            <string>icon.icns</string>
-
-            <key>CFBundleTypeName</key>
-            <string>jamovi Data Set</string>
-
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-
-            <key>LSHandlerRank</key>
-            <string>owner</string>
-
-            <key>LSIsAppleDefaultForType</key>
-            <true/>
-
-            <key>LSItemContentTypes</key>
-            <array>
-                <string>org.jamovi.jamovi</string>
-            </array>
-        </dict>
-        <dict>
-            <key>CFBundleTypeExtensions</key>
-            <array>
-                <string>csv</string>
-            </array>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>LSHandlerRank</key>
-            <string>Owner</string>
-            <key>LSItemContentTypes</key>
-            <array>
-                <string>public.comma-separated-values-text</string>
-            </array>
-        </dict>
-    </array>
-
     <key>UTExportedTypeDeclarations</key>
     <array>
         <dict>
-
             <key>UTTypeIdentifier</key>
             <string>org.jamovi.jamovi</string>
 
             <key>UTTypeDescription</key>
             <string>jamovi Data Set</string>
+            
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.spreadsheet</string>
+            </array>
 
             <key>UTTypeIconFile</key>
             <string>icon.icns</string>
@@ -100,16 +60,43 @@
                     <string>omv</string>
                 </array>
             </dict>
+        </dict>
+        
+        <dict>
+            <key>UTTypeIdentifier</key>
+            <string>org.jamovi.jamovi-template</string>
 
+            <key>UTTypeDescription</key>
+            <string>jamovi Template</string>
+            
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.spreadsheet</string>
+            </array>
+
+            <key>UTTypeIconFile</key>
+            <string>icon.icns</string>
+
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>omt</string>
+                </array>
+            </dict>
         </dict>
 
         <dict>
-
             <key>UTTypeIdentifier</key>
             <string>public.comma-separated-values-text</string>
 
             <key>UTTypeDescription</key>
             <string>Comma separated spreadsheet</string>
+            
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+            </array>
 
             <key>UTTypeTagSpecification</key>
             <dict>
@@ -118,10 +105,6 @@
                     <string>csv</string>
                 </array>
             </dict>
-
-            <key>UTTypeConformsTo</key>
-            <array/>
-
         </dict>
     </array>
 
